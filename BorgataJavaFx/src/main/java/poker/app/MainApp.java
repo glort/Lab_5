@@ -52,6 +52,7 @@ public class MainApp extends Application {
 
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Poker");
+		this.primaryStage.setMaximized(true);
 
 		// Set the application icon.
 		this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/res/img/26.png")));
@@ -79,8 +80,12 @@ public class MainApp extends Application {
 			// Give the controller access to the main app.
 			RootLayoutController rootController = loader.getController();
 			rootController.setMainApp(this);
+			
+			primaryStage.setY(1000);
 
 			primaryStage.show();
+			
+			this.primaryStage.setMaximized(true);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -100,6 +105,7 @@ public class MainApp extends Application {
 			// Give the controller access to the main app.
 			PokerTableController controller = loader.getController();
 			controller.setMainApp(this);
+			this.primaryStage.setMaximized(true);
 
 		} catch (IOException e) {
 			e.printStackTrace();

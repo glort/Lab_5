@@ -11,15 +11,15 @@
         <menus>
           <Menu mnemonicParsing="false" text="Game">
             <items>
-                  <RadioMenuItem mnemonicParsing="false" text="5 Card Joker Poker">
+                  <RadioMenuItem mnemonicParsing="false" onAction="#handleFiveStud" onMenuValidation="#handleFiveStud" text="5 Card Stud">
                      <toggleGroup>
                         <ToggleGroup fx:id="tglGames" />
                      </toggleGroup></RadioMenuItem>
                   <RadioMenuItem mnemonicParsing="false" text="5 Card Wild Card Joker" toggleGroup="$tglGames" />
                   <RadioMenuItem mnemonicParsing="false" text="5 Card Draw" toggleGroup="$tglGames" />
                   <RadioMenuItem mnemonicParsing="false" text="7 Card Draw" toggleGroup="$tglGames" />
-                  <RadioMenuItem mnemonicParsing="false" text="Texas Hold'em" toggleGroup="$tglGames" />
-                  <RadioMenuItem mnemonicParsing="false" text="Omaha" toggleGroup="$tglGames" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#handleHoldEm" onMenuValidation="#handleHoldEm" text="Texas Hold'em" toggleGroup="$tglGames" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#handleOmaha" onMenuValidation="#handleOmaha" text="Omaha" toggleGroup="$tglGames" />
                   <RadioMenuItem mnemonicParsing="false" text="Close" toggleGroup="$tglGames" />
             </items>
           </Menu>

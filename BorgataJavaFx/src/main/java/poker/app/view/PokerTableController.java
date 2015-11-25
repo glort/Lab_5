@@ -25,6 +25,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -114,6 +115,15 @@ public class PokerTableController {
 	public Label lblP3Name;
 	@FXML
 	public Label lblP4Name;
+	
+	@FXML
+	public Label lblWinner1;
+	@FXML
+	public Label lblWinner2;
+	@FXML
+	public Label lblWinner3;
+	@FXML
+	public Label lblWinner4;
 
 	@FXML
 	public ToggleButton btnP1SitLeave;
@@ -150,6 +160,10 @@ public class PokerTableController {
 	 */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
+		lblWinner1.setVisible(false);
+		lblWinner2.setVisible(false);
+		lblWinner3.setVisible(false);
+		lblWinner4.setVisible(false);
 
 	}
 
@@ -217,6 +231,10 @@ public class PokerTableController {
 			iCardDrawnPlayer = 0;
 			iCardDrawnCommon = 0;
 			iDrawCount = 0;
+			lblWinner1.setVisible(false);
+			lblWinner2.setVisible(false);
+			lblWinner3.setVisible(false);
+			lblWinner4.setVisible(false);
 			break;
 		case PlayOfGame:
 			btnDraw.setDisable(false);
@@ -251,7 +269,7 @@ public class PokerTableController {
 		HboxCommunityCards.getChildren().clear();
 
 		// Get the Rule, start the Game
-		Rule rle = new Rule(eGame.Omaha);
+		Rule rle = new Rule(RootLayoutController.game);
 		gme = new GamePlay(rle);
 
 		// Add the seated players to the game, create a GPPH for the player
@@ -389,7 +407,6 @@ public class PokerTableController {
 				GamePlayPlayerHand GPPH = gme.FindPlayerGame(gme, p);
 				Hand PlayerHand = GPPH.getHand();
 				GamePlayPlayerHand GPCH = gme.FindCommonHand(gme);
-
 				ArrayList<Hand> AllHands = Hand.ListHands(GPPH.getHand(), GPCH.getHand(), GPPH.getGame());
 				Hand hBestHand = Hand.PickBestHand(AllHands);
 				GPPH.setBestHand(hBestHand);
@@ -400,6 +417,26 @@ public class PokerTableController {
 			Hand WinningHand = Hand.PickBestHand(BestPlayerHands);
 			Player WinningPlayer = (Player) hsPlayerHand.get(WinningHand);
 			System.out.println("Winning Player Position: " + WinningPlayer.getiPlayerPosition());
+			
+			
+			
+			
+			switch (WinningPlayer.getiPlayerPosition()){
+			case 1:
+				lblWinner1.setVisible(true);
+				break;
+			case 2:
+				lblWinner2.setVisible(true);
+				break;
+			case 3:
+				lblWinner3.setVisible(true);
+				break;
+			case 4:
+				lblWinner4.setVisible(true);
+				break;
+				
+			}
+			
 			SetGameControls(eGameState.EndOfGame);
 
 		} else {

@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import enums.eGame;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -34,6 +35,25 @@ public class RootLayoutController implements Initializable {
     
     @FXML
     private ToggleGroup tglGames;
+    
+    protected static eGame game = eGame.FiveStud;
+    
+    public static eGame getGame(){
+    	return game;
+    }
+    
+    public void handleHoldEm(){
+    	RootLayoutController.game = eGame.TexasHoldEm;
+    }
+    
+    public void handleFiveStud(){
+    	RootLayoutController.game = eGame.FiveStud;
+    	
+    }
+    
+    public void handleOmaha(){
+    	RootLayoutController.game = eGame.Omaha;
+    }
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
